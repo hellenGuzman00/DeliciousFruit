@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicious Fruit | Heladería artesanal</title>
+<meta name="description" content="Delicious Fruit: heladería artesanal con sabores frutales, hechos con ingredientes reales. Conoce nuestro catálogo y visítanos.">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-interior">
+    <a href="#inicio" class="logo">
+      <img src="img/logo.jpg" alt="Logo Delicious Fruit">
+      <span>Delicious Fruit</span>
+    </a>
+
+    <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
+    <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="nav-mobile">
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#sobre-nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#sobre-nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="contenedor hero-grid">
+    <div>
+      <h1>Helado de fruta real, hecho todos los días</h1>
+      <p>En Delicious Fruit combinamos fruta fresca con recetas artesanales para un helado que sabe como debe saber: a lo natural</p>
+      <a href="#catalogo" class="btn btn-primario">Ver catálogo</a>
+    </div>
+    <div class="hero-imagen">
+      <img src="img/heladosreal.jpg" alt="Helado artesanal Delicious Fruit">
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="catalogo">
+  <div class="contenedor">
+    <h2>Nuestro catálogo</h2>
+    <p class="intro">Estos son algunos de los sabores que preparamos con fruta natural.</p>
+
+    <div class="grid-productos">
+      <article class="tarjeta-producto">
+        <img src="img/helado1.jpg" alt="Helado Deliciosa con fruta">
+        <h3>Fresa natural</h3>
+        <p>Fresas frescas seleccionadas cada mañana.</p>
+      </article>
+
+      <article class="tarjeta-producto">
+        <img src="img/helados2.jpg" alt="Helado Deliciosa con fruta">
+        <h3>Variedad tropical</h3>
+        <p>Dulces, cremosos y autentica frescura.</p>
+      </article>
+
+      <article class="tarjeta-producto">
+        <img src="img/helados3.jpg" alt="Helado Deliciosa con fruta">
+        <h3>Paletas "DeliciosaFruta"</h3>
+        <p>El equilibrio perfecto de lo que te gusta.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="seccion-nosotros" id="sobre-nosotros">
+  <div class="contenedor sobre-grid">
+    <div>
+      <h2>Sobre nosotros</h2>
+      <p>Delicious Fruit nació como un pequeño local con una idea simple: hacer helado como se hacía antes, con fruta de verdad y sin atajos.</p>
+      <p>Cada sabor se prepara en pequeños lotes en nuestra tienda, para que lo que compres hoy se haya hecho hoy mismo.</p>
+    </div>
+    <div class="nosotros-dato">
+      <span class="dato-numero">100%</span>
+      <span class="dato-texto">Fruta real en cada receta</span>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="contacto">
+  <div class="contenedor">
+    <h2>Queremos saber de ti, envíanos tu mensaje</h2>
+
+    <form class="form" action="#" method="post">
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="nombre">Nombre <span class="req">*</span></label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="correo">Email <span class="req">*</span></label>
+          <input type="email" id="correo" name="correo" required>
+        </div>
+      </div>
+
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="telefono">Teléfono <span class="req">*</span></label>
+          <input type="tel" id="telefono" name="telefono" required>
+        </div>
+        <div class="campo">
+          <label for="pais">País <span class="req">*</span></label>
+          <select id="pais" name="pais" required>
+            <option value="">Selecciona el país...</option>
+            <option value="SV">El Salvador</option>
+            <option value="GT">Guatemala</option>
+            <option value="HN">Honduras</option>
+            <option value="NI">Nicaragua</option>
+            <option value="CR">Costa Rica</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="mensaje">Mensaje <span class="req">*</span></label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-form">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="contenedor pie-interior">
+    <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
+    <nav class="pie-enlaces">
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#sobre-nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
