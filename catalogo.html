@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo | Delicious Fruit</title>
+<meta name="description" content="Catálogo completo de Delicious Fruit: helados, paletas, sundaes y más, hechos con fruta real.">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-interior">
+    <a href="index.html" class="logo">
+      <img src="img/logo.jpg" alt="Logotipo Delicious Fruit">
+      <span>Delicious Fruit</span>
+    </a>
+
+    <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
+    <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="nav-mobile">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="catalogo.html" class="activo">Catálogo</a>
+      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+
+    <nav class="nav">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="catalogo.html" class="activo">Catálogo</a>
+      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="titulo-pagina">
+  <div class="contenedor">
+    <h1>Nuestro catálogo</h1>
+    <p>Todo lo que preparamos en Delicious Fruit, hecho con fruta real.</p>
+  </div>
+</section>
+
+<section class="seccion-catalogo">
+  <div class="contenedor">
+
+    <input type="radio" name="filtro" id="filtro-todos" class="filtro-input" checked>
+    <label for="filtro-todos" class="filtro-tab">Todos</label>
+    <input type="radio" name="filtro" id="filtro-paletas" class="filtro-input">
+    <label for="filtro-paletas" class="filtro-tab">Paletas</label>
+    <input type="radio" name="filtro" id="filtro-para-llevar" class="filtro-input">
+    <label for="filtro-para-llevar" class="filtro-tab">Para llevar</label>
+
+    <div class="grid-catalogo">
+
+      <article class="tarjeta cat-para-llevar">
+        <div class="tarjeta-imagen">
+          <img src="images/fresa.jpg" alt="Fresa natural">
+        </div>
+        <h3>Fresa natural</h3>
+        <p>Fresas frescas seleccionadas cada mañana.</p>
+      </article>
+
+      <article class="tarjeta cat-para-llevar">
+        <div class="tarjeta-imagen">
+          <img src="images/mango.jpg" alt="Mango tropical">
+        </div>
+        <h3>Mango tropical</h3>
+        <p>Dulce, cremoso y con pulpa real de mango.</p>
+      </article>
+
+      <article class="tarjeta cat-para-llevar">
+        <div class="tarjeta-imagen">
+          <img src="images/maracuya.jpg" alt="Maracuyá">
+        </div>
+        <h3>Maracuyá</h3>
+        <p>El equilibrio perfecto entre dulce y ácido.</p>
+      </article>
+
+      <article class="tarjeta cat-para-llevar">
+        <div class="tarjeta-imagen">
+          <img src="images/coco.jpg" alt="Coco cremoso">
+        </div>
+        <h3>Coco cremoso</h3>
+        <p>Suave sabor a coco, natural y sin atajos.</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta-imagen">
+          <img src="images/banana-split.jpg" alt="Banana split">
+        </div>
+        <h3>Banana split</h3>
+        <p>Helado, banano y crema batida en una sola copa.</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta-imagen">
+          <img src="images/sundae.jpg" alt="Sundae de frutas">
+        </div>
+        <h3>Sundae de frutas</h3>
+        <p>Copa de helado con fruta fresca de temporada.</p>
+      </article>
+
+      <article class="tarjeta cat-paletas">
+        <div class="tarjeta-imagen">
+          <img src="images/paleta-fresa.jpg" alt="Paleta de fresa">
+        </div>
+        <h3>Paleta de fresa</h3>
+        <p>Paleta artesanal hecha con fruta real.</p>
+      </article>
+
+      <article class="tarjeta cat-paletas">
+        <div class="tarjeta-imagen">
+          <img src="images/paleta-mango.jpg" alt="Paleta de mango">
+        </div>
+        <h3>Paleta de mango</h3>
+        <p>Pulpa real de mango en cada mordida.</p>
+      </article>
+
+      <article class="tarjeta cat-paletas">
+        <div class="tarjeta-imagen">
+          <img src="images/paleta-maracuya.jpg" alt="Paleta de maracuyá">
+        </div>
+        <h3>Paleta de maracuyá</h3>
+        <p>Fresca, ácida y hecha con fruta natural.</p>
+      </article>
+
+      <article class="tarjeta cat-paletas">
+        <div class="tarjeta-imagen">
+          <img src="images/paleta-coco.jpg" alt="Paleta de coco">
+        </div>
+        <h3>Paleta de coco</h3>
+        <p>Suave y cremosa, con coco real.</p>
+      </article>
+
+      <article class="tarjeta cat-para-llevar">
+        <div class="tarjeta-imagen">
+          <img src="images/batido.jpg" alt="Batido tropical">
+        </div>
+        <h3>Batido tropical</h3>
+        <p>Bebida fría de fruta y helado, ideal para llevar.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="contenedor pie-interior">
+    <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
+    <nav class="pie-enlaces">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

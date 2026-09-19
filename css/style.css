@@ -79,6 +79,7 @@ h1, h2, h3 { font-family: 'Baloo 2', sans-serif; color: var(--cafe); }
   transition: background 0.15s;
 }
 .btn:hover { background: var(--coral-oscuro); }
+.btn-catalogo-completo { margin-top: 2rem; }
 
 .hero-imagen img {
   border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%;
