@@ -49,14 +49,52 @@
 </section>
 
 <section class="seccion-catalogo">
-  <div class="contenedor">
+  <div class="contenedor catalogo-layout">
+
+    <input type="checkbox" id="toggle-sidebar" class="filtro-input">
 
     <input type="radio" name="filtro" id="filtro-todos" class="filtro-input" checked>
-    <label for="filtro-todos" class="filtro-tab">Todos</label>
     <input type="radio" name="filtro" id="filtro-paletas" class="filtro-input">
-    <label for="filtro-paletas" class="filtro-tab">Paletas</label>
     <input type="radio" name="filtro" id="filtro-para-llevar" class="filtro-input">
-    <label for="filtro-para-llevar" class="filtro-tab">Para llevar</label>
+
+    <input type="radio" name="sabor" id="sabor-todas" class="filtro-input" checked>
+    <input type="radio" name="sabor" id="sabor-dulces" class="filtro-input">
+    <input type="radio" name="sabor" id="sabor-acidas" class="filtro-input">
+    <input type="radio" name="sabor" id="sabor-chilosas" class="filtro-input">
+    <input type="radio" name="sabor" id="sabor-agridulces" class="filtro-input">
+
+    <label for="toggle-sidebar" class="btn-sidebar-toggle">Categorías</label>
+    <label for="toggle-sidebar" class="sidebar-overlay"></label>
+
+    <aside class="panel-filtros">
+      <div class="panel-filtros-header">
+        <span>Categorías</span>
+        <label for="toggle-sidebar" class="btn-cerrar-panel" aria-label="Cerrar">&times;</label>
+      </div>
+      <div class="filtros-cabecera">Filtros</div>
+
+      <details class="filtros-grupo" open>
+        <summary>Tipo de producto</summary>
+        <div class="filtros-lista">
+          <label for="filtro-todos" class="opcion">Todos <span class="cuenta" data-cuenta=".tarjeta"></span></label>
+          <label for="filtro-paletas" class="opcion">Paletas <span class="cuenta" data-cuenta=".cat-paletas"></span></label>
+          <label for="filtro-para-llevar" class="opcion">Para llevar <span class="cuenta" data-cuenta=".cat-para-llevar"></span></label>
+        </div>
+      </details>
+
+      <details class="filtros-grupo sabores-contenedor" open>
+        <summary>Sabor de paletas</summary>
+        <div class="filtros-lista">
+          <label for="sabor-todas" class="opcion">Todas <span class="cuenta" data-cuenta=".cat-paletas"></span></label>
+          <label for="sabor-dulces" class="opcion">Dulces <span class="cuenta" data-cuenta=".sabor-dulce"></span></label>
+          <label for="sabor-acidas" class="opcion">Ácidas <span class="cuenta" data-cuenta=".sabor-acida"></span></label>
+          <label for="sabor-chilosas" class="opcion">Chilosas <span class="cuenta" data-cuenta=".sabor-chilosa"></span></label>
+          <label for="sabor-agridulces" class="opcion">Agridulces <span class="cuenta" data-cuenta=".sabor-agridulce"></span></label>
+        </div>
+      </details>
+    </aside>
+
+    <div class="barra-resultados">Mostrando <strong id="total-productos">0</strong> productos</div>
 
     <div class="grid-catalogo">
 
@@ -108,7 +146,7 @@
         <p>Copa de helado con fruta fresca de temporada.</p>
       </article>
 
-      <article class="tarjeta cat-paletas">
+      <article class="tarjeta cat-paletas sabor-agridulce">
         <div class="tarjeta-imagen">
           <img src="images/paleta-fresa.jpg" alt="Paleta de fresa">
         </div>
@@ -116,7 +154,7 @@
         <p>Paleta artesanal hecha con fruta real.</p>
       </article>
 
-      <article class="tarjeta cat-paletas">
+      <article class="tarjeta cat-paletas sabor-dulce">
         <div class="tarjeta-imagen">
           <img src="images/paleta-mango.jpg" alt="Paleta de mango">
         </div>
@@ -124,7 +162,7 @@
         <p>Pulpa real de mango en cada mordida.</p>
       </article>
 
-      <article class="tarjeta cat-paletas">
+      <article class="tarjeta cat-paletas sabor-acida">
         <div class="tarjeta-imagen">
           <img src="images/paleta-maracuya.jpg" alt="Paleta de maracuyá">
         </div>
@@ -132,12 +170,20 @@
         <p>Fresca, ácida y hecha con fruta natural.</p>
       </article>
 
-      <article class="tarjeta cat-paletas">
+      <article class="tarjeta cat-paletas sabor-dulce">
         <div class="tarjeta-imagen">
           <img src="images/paleta-coco.jpg" alt="Paleta de coco">
         </div>
         <h3>Paleta de coco</h3>
         <p>Suave y cremosa, con coco real.</p>
+      </article>
+
+      <article class="tarjeta cat-paletas sabor-chilosa">
+        <div class="tarjeta-imagen">
+          <img src="images/paleta-sandia-chilosa.jpg" alt="Paleta de sandía con chile">
+        </div>
+        <h3>Sandía con chile</h3>
+        <p>Sandía fresca con un toque picante, dulce y chile al final.</p>
       </article>
 
       <article class="tarjeta cat-para-llevar">
@@ -164,5 +210,28 @@
   </div>
 </footer>
 
+<script>
+  const toggle = document.getElementById('toggle-sidebar');
+  const tarjetas = document.querySelectorAll('.tarjeta');
+  const total = document.getElementById('total-productos');
+
+  // Números entre paréntesis de cada opción
+  document.querySelectorAll('[data-cuenta]').forEach(el => {
+    el.textContent = '(' + document.querySelectorAll(el.dataset.cuenta).length + ')';
+  });
+
+  // "Mostrando N productos"
+  const contar = () => {
+    total.textContent = [...tarjetas].filter(t => getComputedStyle(t).display !== 'none').length;
+  };
+  contar();
+
+  // Al elegir un sabor, el panel se cierra y se ven los helados filtrados
+  document.querySelectorAll('input[name="sabor"]').forEach(r =>
+    r.addEventListener('change', () => { toggle.checked = false; contar(); }));
+  // Al elegir categoría, se cierra, salvo "Paletas" (falta elegir el sabor)
+  document.querySelectorAll('input[name="filtro"]').forEach(r =>
+    r.addEventListener('change', () => { if (r.id !== 'filtro-paletas') toggle.checked = false; contar(); }));
+</script>
 </body>
 </html>
