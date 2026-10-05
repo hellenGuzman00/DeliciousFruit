@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo | Delicious Fruit</title>
 <meta name="description" content="Catálogo completo de Delicious Fruit: helados, paletas, sundaes y más, hechos con fruta real.">
-<link rel="icon" type="image/png" href="img/logo.jpg">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
     <p>Todo lo que preparamos en Delicious Fruit, hecho con fruta real.</p>
     <div class="buscador">
       <label for="buscar" class="solo-lectores">Buscar helado</label>
-      <input type="search" id="buscar" placeholder="Busca tu helado: vainilla, café, menta..." autocomplete="off">
+      <input type="search" id="buscar" placeholder="Busca tu helado..." autocomplete="off">
       <button type="button" id="limpiar-busqueda" aria-label="Borrar búsqueda" hidden>&times;</button>
     </div>
   </div>
@@ -43,7 +43,11 @@
 <section class="seccion-catalogo">
   <div class="contenedor">
 
-    <div class="filtros">
+    <button type="button" class="tab-categorias" id="tab-categorias" aria-label="Abrir categorías">Categorías</button>
+    <div class="filtros-overlay" id="filtros-overlay"></div>
+
+    <div class="filtros" id="filtros">
+      <div class="filtros-cab"><span>Categorías</span><button type="button" class="cerrar cerrar-filtros" aria-label="Cerrar categorías">&times;</button></div>
       <div class="fila">
         <div class="chips" role="group" aria-label="Tipo de producto">
           <button type="button" class="chip activo" data-tipo="todos">🍨 Todos <span class="cuenta" data-cuenta=".tarjeta"></span></button>
@@ -62,29 +66,30 @@
       </div>
       <div class="fila fila-sabor" id="fila-sabor">
         <span class="fila-titulo">Sabor</span>
-        <div class="chips" role="group" aria-label="Sabor">
-          <button type="button" class="chip chip-sabor activo" data-sabor="todas">✨ Todos <span class="cuenta" data-cuenta=".tarjeta"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="vainilla">🍦 Vainilla <span class="cuenta" data-cuenta=".sabor-vainilla"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="chocolate">🍫 Chocolate <span class="cuenta" data-cuenta=".sabor-chocolate"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="fresa">🍓 Fresa <span class="cuenta" data-cuenta=".sabor-fresa"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="chilosa">🌶️ Chilosas <span class="cuenta" data-cuenta=".sabor-chilosa"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="limon">🍋 Limón <span class="cuenta" data-cuenta=".sabor-limon"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="pistacho">🥜 Pistacho <span class="cuenta" data-cuenta=".sabor-pistacho"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="menta">🌿 Menta <span class="cuenta" data-cuenta=".sabor-menta"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="menta-chocolate">🍃 Menta con chocolate <span class="cuenta" data-cuenta=".sabor-menta-chocolate"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="cafe">☕ Café <span class="cuenta" data-cuenta=".sabor-cafe"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="coco">🥥 Coco <span class="cuenta" data-cuenta=".sabor-coco"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="mango">🥭 Mango <span class="cuenta" data-cuenta=".sabor-mango"></span></button>
-          <button type="button" class="chip chip-sabor" data-sabor="maracuya">🌺 Maracuyá <span class="cuenta" data-cuenta=".sabor-maracuya"></span></button>
+        <div class="chips" id="chips-sabor" role="group" aria-label="Sabor">
+          <button type="button" class="chip chip-sabor activo" data-sabor="todas"><span class="emo">✨</span><span class="nom">Todos</span> <span class="cuenta" data-cuenta=".tarjeta"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="vainilla"><span class="emo">🍦</span><span class="nom">Vainilla</span> <span class="cuenta" data-cuenta=".sabor-vainilla"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="chocolate"><span class="emo">🍫</span><span class="nom">Chocolate</span> <span class="cuenta" data-cuenta=".sabor-chocolate"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="fresa"><span class="emo">🍓</span><span class="nom">Fresa</span> <span class="cuenta" data-cuenta=".sabor-fresa"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="chilosa"><span class="emo">🌶️</span><span class="nom">Chilosas</span> <span class="cuenta" data-cuenta=".sabor-chilosa"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="limon"><span class="emo">🍋</span><span class="nom">Limón</span> <span class="cuenta" data-cuenta=".sabor-limon"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="pistacho"><span class="emo">🥜</span><span class="nom">Pistacho</span> <span class="cuenta" data-cuenta=".sabor-pistacho"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="menta"><span class="emo">🌿</span><span class="nom">Menta</span> <span class="cuenta" data-cuenta=".sabor-menta"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="menta-chocolate"><span class="emo">🍃</span><span class="nom">Menta con chocolate</span> <span class="cuenta" data-cuenta=".sabor-menta-chocolate"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="cafe"><span class="emo">☕</span><span class="nom">Café</span> <span class="cuenta" data-cuenta=".sabor-cafe"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="coco"><span class="emo">🥥</span><span class="nom">Coco</span> <span class="cuenta" data-cuenta=".sabor-coco"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="mango"><span class="emo">🥭</span><span class="nom">Mango</span> <span class="cuenta" data-cuenta=".sabor-mango"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="maracuya"><span class="emo">🌺</span><span class="nom">Maracuyá</span> <span class="cuenta" data-cuenta=".sabor-maracuya"></span></button>
         </div>
       </div>
+      <button type="button" class="btn btn-grande ver-resultados">Ver resultados</button>
     </div>
 
     <p class="resultados" role="status">Mostrando <strong id="total">0</strong> <span id="plural">productos</span></p>
 
     <div class="grid-catalogo" id="grid">
       <article class="tarjeta cat-para-llevar sabor-vainilla">
-        <div class="tarjeta-imagen"><img src="images/vainilla.jpeg" alt="Helado de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-imagen"><img src="images/vainilla.jpg" alt="Helado de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
         <div class="tarjeta-cuerpo"><h3>Helado de vainilla</h3><p>Clásico y cremoso, con vainilla de verdad.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de vainilla al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
       <article class="tarjeta cat-paletas sabor-vainilla">
@@ -306,6 +311,7 @@
       if (!c.hidden) n++;
     });
     document.getElementById('total').textContent = n;
+    document.querySelector('.ver-resultados').textContent = 'Ver ' + n + (n === 1 ? ' producto' : ' productos');
     document.getElementById('plural').textContent = n === 1 ? 'producto' : 'productos';
     document.getElementById('vacio').hidden = n > 0;
 
@@ -445,6 +451,25 @@
 
   render();
 })();
+</script>
+
+
+<script>
+  // Categorías en celular: pestaña a la izquierda + panel lateral (el carrito sigue disponible a la derecha)
+  (() => {
+    const filtros = document.getElementById('filtros'), overlay = document.getElementById('filtros-overlay');
+    const movil = () => window.matchMedia && matchMedia('(max-width: 760px)').matches;
+    const abrir = () => { filtros.classList.add('abierto'); overlay.classList.add('ver'); };
+    const cerrar = () => { filtros.classList.remove('abierto'); overlay.classList.remove('ver'); };
+    document.getElementById('tab-categorias').addEventListener('click', abrir);
+    overlay.addEventListener('click', cerrar);
+    document.querySelector('.cerrar-filtros').addEventListener('click', cerrar);
+    document.querySelector('.ver-resultados').addEventListener('click', cerrar);
+    // Al elegir un sabor, el panel se cierra solo y se ven los helados de ese sabor
+    document.querySelectorAll('[data-sabor]').forEach(b => b.addEventListener('click', () => { if (movil()) cerrar(); }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+    addEventListener('resize', () => { if (!movil()) cerrar(); });
+  })();
 </script>
 </body>
 </html>
