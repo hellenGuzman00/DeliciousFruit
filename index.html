@@ -59,7 +59,13 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-blob-color"></div>
+      <div class="hero-video-marco">
+        <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" poster="carpVideo/hero-poster.jpg" aria-hidden="true">
+          <source src="carpVideo/hero.mp4" type="video/mp4">
+          <source src="carpVideo/hero.webm" type="video/webm">
+        </video>
+        <button type="button" class="hero-video-btn" id="hero-video-btn" aria-label="Pausar video">❚❚</button>
+      </div>
       <img src="img/heladosreal.jpg" alt="Helado artesanal Delicious Fruit" class="hero-img-principal">
       <img src="img/fruti.jpg" alt="Helado de fresa" class="hero-img-flotante hero-img-flotante-1">
       <img src="img/frute.jpg" alt="Helado tropical" class="hero-img-flotante hero-img-flotante-2">
@@ -176,5 +182,33 @@
   </div>
 </footer>
 
+<script>
+  // Reproducción del video del hero (a prueba de bloqueos de autoplay)
+  (() => {
+    const v = document.getElementById('hero-video');
+    const btn = document.getElementById('hero-video-btn');
+    if (!v) return;
+    let pausaManual = false;
+    v.muted = true;                       // el autoplay solo está permitido si está silenciado
+    const reproducir = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+
+    reproducir();
+    v.addEventListener('loadeddata', reproducir);
+    // Si el navegador bloqueó el autoplay, el primer gesto del usuario lo inicia
+    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(ev =>
+      window.addEventListener(ev, () => { if (v.paused && !pausaManual) reproducir(); }, { once: true, passive: true }));
+
+    v.addEventListener('playing', () => { btn.textContent = '❚❚'; btn.setAttribute('aria-label', 'Pausar video'); });
+    v.addEventListener('pause',   () => { btn.textContent = '▶';  btn.setAttribute('aria-label', 'Reproducir video'); });
+    btn.addEventListener('click', () => {
+      if (v.paused) { pausaManual = false; reproducir(); } else { pausaManual = true; v.pause(); }
+    });
+
+    // Aviso claro en la consola si ninguna fuente carga
+    const fuentes = v.querySelectorAll('source');
+    fuentes[fuentes.length - 1].addEventListener('error', () =>
+      console.error('[Delicious Fruit] No se pudo cargar el video. Verifica que exista carpVideo/hero.mp4 al lado de index.html.'));
+  })();
+</script>
 </body>
 </html>
