@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo | Delicious Fruit</title>
 <meta name="description" content="Catálogo completo de Delicious Fruit: helados, paletas, sundaes y más, hechos con fruta real.">
-<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="icon" type="image/png" href="img/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,223 +15,436 @@
 
 <header class="cabecera">
   <div class="contenedor cabecera-interior">
-    <a href="index.html" class="logo">
-      <img src="img/logo.jpg" alt="Logotipo Delicious Fruit">
-      <span>Delicious Fruit</span>
-    </a>
-
+    <a href="index.html" class="logo"><img src="img/logo.jpg" alt="Logotipo Delicious Fruit"><span>Delicious Fruit</span></a>
     <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
-    <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </label>
-
+    <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú"><span></span><span></span><span></span></label>
     <nav class="nav-mobile">
-      <a href="index.html#inicio">Inicio</a>
-      <a href="catalogo.html" class="activo">Catálogo</a>
-      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
-      <a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html" class="activo">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
     </nav>
-
     <nav class="nav">
-      <a href="index.html#inicio">Inicio</a>
-      <a href="catalogo.html" class="activo">Catálogo</a>
-      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
-      <a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html" class="activo">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
     </nav>
   </div>
 </header>
 
-<section class="titulo-pagina">
+<section class="cat-hero">
+  <span class="fr fr1" aria-hidden="true">🍓</span><span class="fr fr2" aria-hidden="true">🥭</span><span class="fr fr3" aria-hidden="true">🍍</span><span class="fr fr4" aria-hidden="true">🥥</span>
   <div class="contenedor">
     <h1>Nuestro catálogo</h1>
     <p>Todo lo que preparamos en Delicious Fruit, hecho con fruta real.</p>
+    <div class="buscador">
+      <label for="buscar" class="solo-lectores">Buscar helado</label>
+      <input type="search" id="buscar" placeholder="Busca tu helado: vainilla, café, menta..." autocomplete="off">
+      <button type="button" id="limpiar-busqueda" aria-label="Borrar búsqueda" hidden>&times;</button>
+    </div>
   </div>
 </section>
 
 <section class="seccion-catalogo">
-  <div class="contenedor catalogo-layout">
+  <div class="contenedor">
 
-    <input type="checkbox" id="toggle-sidebar" class="filtro-input">
-
-    <input type="radio" name="filtro" id="filtro-todos" class="filtro-input" checked>
-    <input type="radio" name="filtro" id="filtro-paletas" class="filtro-input">
-    <input type="radio" name="filtro" id="filtro-para-llevar" class="filtro-input">
-
-    <input type="radio" name="sabor" id="sabor-todas" class="filtro-input" checked>
-    <input type="radio" name="sabor" id="sabor-dulces" class="filtro-input">
-    <input type="radio" name="sabor" id="sabor-acidas" class="filtro-input">
-    <input type="radio" name="sabor" id="sabor-chilosas" class="filtro-input">
-    <input type="radio" name="sabor" id="sabor-agridulces" class="filtro-input">
-
-    <label for="toggle-sidebar" class="btn-sidebar-toggle">Categorías</label>
-    <label for="toggle-sidebar" class="sidebar-overlay"></label>
-
-    <aside class="panel-filtros">
-      <div class="panel-filtros-header">
-        <span>Categorías</span>
-        <label for="toggle-sidebar" class="btn-cerrar-panel" aria-label="Cerrar">&times;</label>
+    <div class="filtros">
+      <div class="fila">
+        <div class="chips" role="group" aria-label="Tipo de producto">
+          <button type="button" class="chip activo" data-tipo="todos">🍨 Todos <span class="cuenta" data-cuenta=".tarjeta"></span></button>
+          <button type="button" class="chip" data-tipo="paletas">🍧 Paletas <span class="cuenta" data-cuenta=".cat-paletas"></span></button>
+          <button type="button" class="chip" data-tipo="llevar">🥤 Para llevar <span class="cuenta" data-cuenta=".cat-para-llevar"></span></button>
+          <button type="button" class="chip" data-tipo="postres">🍌 Postres <span class="cuenta" data-cuenta=".cat-postres"></span></button>
+        </div>
+        <label class="orden">Ordenar por
+          <select id="orden">
+            <option value="0">Destacados</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="nombre">Nombre (A–Z)</option>
+          </select>
+        </label>
       </div>
-      <div class="filtros-cabecera">Filtros</div>
-
-      <details class="filtros-grupo" open>
-        <summary>Tipo de producto</summary>
-        <div class="filtros-lista">
-          <label for="filtro-todos" class="opcion">Todos <span class="cuenta" data-cuenta=".tarjeta"></span></label>
-          <label for="filtro-paletas" class="opcion">Paletas <span class="cuenta" data-cuenta=".cat-paletas"></span></label>
-          <label for="filtro-para-llevar" class="opcion">Para llevar <span class="cuenta" data-cuenta=".cat-para-llevar"></span></label>
+      <div class="fila fila-sabor" id="fila-sabor">
+        <span class="fila-titulo">Sabor</span>
+        <div class="chips" role="group" aria-label="Sabor">
+          <button type="button" class="chip chip-sabor activo" data-sabor="todas">✨ Todos <span class="cuenta" data-cuenta=".tarjeta"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="vainilla">🍦 Vainilla <span class="cuenta" data-cuenta=".sabor-vainilla"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="chocolate">🍫 Chocolate <span class="cuenta" data-cuenta=".sabor-chocolate"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="fresa">🍓 Fresa <span class="cuenta" data-cuenta=".sabor-fresa"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="chilosa">🌶️ Chilosas <span class="cuenta" data-cuenta=".sabor-chilosa"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="limon">🍋 Limón <span class="cuenta" data-cuenta=".sabor-limon"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="pistacho">🥜 Pistacho <span class="cuenta" data-cuenta=".sabor-pistacho"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="menta">🌿 Menta <span class="cuenta" data-cuenta=".sabor-menta"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="menta-chocolate">🍃 Menta con chocolate <span class="cuenta" data-cuenta=".sabor-menta-chocolate"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="cafe">☕ Café <span class="cuenta" data-cuenta=".sabor-cafe"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="coco">🥥 Coco <span class="cuenta" data-cuenta=".sabor-coco"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="mango">🥭 Mango <span class="cuenta" data-cuenta=".sabor-mango"></span></button>
+          <button type="button" class="chip chip-sabor" data-sabor="maracuya">🌺 Maracuyá <span class="cuenta" data-cuenta=".sabor-maracuya"></span></button>
         </div>
-      </details>
+      </div>
+    </div>
 
-      <details class="filtros-grupo sabores-contenedor" open>
-        <summary>Sabor de paletas</summary>
-        <div class="filtros-lista">
-          <label for="sabor-todas" class="opcion">Todas <span class="cuenta" data-cuenta=".cat-paletas"></span></label>
-          <label for="sabor-dulces" class="opcion">Dulces <span class="cuenta" data-cuenta=".sabor-dulce"></span></label>
-          <label for="sabor-acidas" class="opcion">Ácidas <span class="cuenta" data-cuenta=".sabor-acida"></span></label>
-          <label for="sabor-chilosas" class="opcion">Chilosas <span class="cuenta" data-cuenta=".sabor-chilosa"></span></label>
-          <label for="sabor-agridulces" class="opcion">Agridulces <span class="cuenta" data-cuenta=".sabor-agridulce"></span></label>
-        </div>
-      </details>
-    </aside>
+    <p class="resultados" role="status">Mostrando <strong id="total">0</strong> <span id="plural">productos</span></p>
 
-    <div class="barra-resultados">Mostrando <strong id="total-productos">0</strong> productos</div>
-
-    <div class="grid-catalogo">
-
-      <article class="tarjeta cat-para-llevar">
-        <div class="tarjeta-imagen">
-          <img src="images/fresa.jpg" alt="Fresa natural">
-        </div>
-        <h3>Fresa natural</h3>
-        <p>Fresas frescas seleccionadas cada mañana.</p>
+    <div class="grid-catalogo" id="grid">
+      <article class="tarjeta cat-para-llevar sabor-vainilla">
+        <div class="tarjeta-imagen"><img src="images/vainilla.jpeg" alt="Helado de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de vainilla</h3><p>Clásico y cremoso, con vainilla de verdad.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de vainilla al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-para-llevar">
-        <div class="tarjeta-imagen">
-          <img src="images/mango.jpg" alt="Mango tropical">
-        </div>
-        <h3>Mango tropical</h3>
-        <p>Dulce, cremoso y con pulpa real de mango.</p>
+      <article class="tarjeta cat-paletas sabor-vainilla">
+        <div class="tarjeta-imagen"><img src="images/paleta-vainilla.jpg" alt="Paleta de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de vainilla</h3><p>Suave, cremosa y ligeramente dulce.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de vainilla al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-para-llevar">
-        <div class="tarjeta-imagen">
-          <img src="images/maracuya.jpg" alt="Maracuyá">
-        </div>
-        <h3>Maracuyá</h3>
-        <p>El equilibrio perfecto entre dulce y ácido.</p>
+      <article class="tarjeta cat-para-llevar sabor-chocolate">
+        <div class="tarjeta-imagen"><img src="images/chocolate.jpg" alt="Helado de chocolate" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de chocolate</h3><p>Intenso y cremoso, para los amantes del cacao.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de chocolate al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-para-llevar">
-        <div class="tarjeta-imagen">
-          <img src="images/coco.jpg" alt="Coco cremoso">
-        </div>
-        <h3>Coco cremoso</h3>
-        <p>Suave sabor a coco, natural y sin atajos.</p>
+      <article class="tarjeta cat-paletas sabor-chocolate">
+        <div class="tarjeta-imagen"><img src="images/paleta-chocolate.jpg" alt="Paleta de chocolate" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de chocolate</h3><p>Chocolate intenso en cada mordida.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de chocolate al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta">
-        <div class="tarjeta-imagen">
-          <img src="images/banana-split.jpg" alt="Banana split">
-        </div>
-        <h3>Banana split</h3>
-        <p>Helado, banano y crema batida en una sola copa.</p>
+      <article class="tarjeta cat-para-llevar sabor-fresa">
+        <div class="tarjeta-imagen"><img src="images/fresa.jpg" alt="Helado de fresa" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de fresa</h3><p>Fresas frescas seleccionadas cada mañana.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de fresa al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta">
-        <div class="tarjeta-imagen">
-          <img src="images/sundae.jpg" alt="Sundae de frutas">
-        </div>
-        <h3>Sundae de frutas</h3>
-        <p>Copa de helado con fruta fresca de temporada.</p>
+      <article class="tarjeta cat-paletas sabor-fresa">
+        <div class="tarjeta-imagen"><img src="images/paleta-fresa.jpg" alt="Paleta de fresa" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de fresa</h3><p>Paleta artesanal hecha con fruta real.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de fresa al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-paletas sabor-agridulce">
-        <div class="tarjeta-imagen">
-          <img src="images/paleta-fresa.jpg" alt="Paleta de fresa">
-        </div>
-        <h3>Paleta de fresa</h3>
-        <p>Paleta artesanal hecha con fruta real.</p>
+      <article class="tarjeta cat-para-llevar sabor-chilosa">
+        <div class="tarjeta-imagen"><img src="images/chilosa.jpg" alt="Helado chilosa" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado chilosa</h3><p>Dulce y frutal con un toque picante.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado chilosa al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-paletas sabor-dulce">
-        <div class="tarjeta-imagen">
-          <img src="images/paleta-mango.jpg" alt="Paleta de mango">
-        </div>
-        <h3>Paleta de mango</h3>
-        <p>Pulpa real de mango en cada mordida.</p>
-      </article>
-
-      <article class="tarjeta cat-paletas sabor-acida">
-        <div class="tarjeta-imagen">
-          <img src="images/paleta-maracuya.jpg" alt="Paleta de maracuyá">
-        </div>
-        <h3>Paleta de maracuyá</h3>
-        <p>Fresca, ácida y hecha con fruta natural.</p>
-      </article>
-
-      <article class="tarjeta cat-paletas sabor-dulce">
-        <div class="tarjeta-imagen">
-          <img src="images/paleta-coco.jpg" alt="Paleta de coco">
-        </div>
-        <h3>Paleta de coco</h3>
-        <p>Suave y cremosa, con coco real.</p>
-      </article>
-
       <article class="tarjeta cat-paletas sabor-chilosa">
-        <div class="tarjeta-imagen">
-          <img src="images/paleta-sandia-chilosa.jpg" alt="Paleta de sandía con chile">
-        </div>
-        <h3>Sandía con chile</h3>
-        <p>Sandía fresca con un toque picante, dulce y chile al final.</p>
+        <div class="tarjeta-imagen"><img src="images/paleta-sandia-chilosa.jpg" alt="Paleta de sandía con chile" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.25</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de sandía con chile</h3><p>Sandía fresca con un toque picante, dulce y chile al final.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de sandía con chile al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
-
-      <article class="tarjeta cat-para-llevar">
-        <div class="tarjeta-imagen">
-          <img src="images/batido.jpg" alt="Batido tropical">
-        </div>
-        <h3>Batido tropical</h3>
-        <p>Bebida fría de fruta y helado, ideal para llevar.</p>
+      <article class="tarjeta cat-para-llevar sabor-limon">
+        <div class="tarjeta-imagen"><img src="images/limon.jpg" alt="Helado de limón" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de limón</h3><p>Fresco y cítrico, con limón real.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de limón al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
+      <article class="tarjeta cat-paletas sabor-limon">
+        <div class="tarjeta-imagen"><img src="images/paleta-limon.jpg" alt="Paleta de limón" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de limón</h3><p>Refrescante, con el punto justo de acidez.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de limón al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-pistacho">
+        <div class="tarjeta-imagen"><img src="images/pistacho.jpg" alt="Helado de pistacho" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.75</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de pistacho</h3><p>Cremoso, con el sabor suave del pistacho.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de pistacho al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-pistacho">
+        <div class="tarjeta-imagen"><img src="images/paleta-pistacho.jpg" alt="Paleta de pistacho" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.25</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de pistacho</h3><p>Suave y cremosa, con pistacho.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de pistacho al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-menta">
+        <div class="tarjeta-imagen"><img src="images/menta.jpg" alt="Helado de menta" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de menta</h3><p>Fresco y ligero, con menta natural.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de menta al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-menta">
+        <div class="tarjeta-imagen"><img src="images/paleta-menta.jpg" alt="Paleta de menta" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de menta</h3><p>Refrescante de principio a fin.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de menta al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-menta-chocolate">
+        <div class="tarjeta-imagen"><img src="images/menta-chocolate.jpg" alt="Helado de menta con chocolate" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.75</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de menta con chocolate</h3><p>Menta fresca con trocitos de chocolate.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de menta con chocolate al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-menta-chocolate">
+        <div class="tarjeta-imagen"><img src="images/paleta-menta-chocolate.jpg" alt="Paleta de menta con chocolate" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.25</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de menta con chocolate</h3><p>La mezcla fresca y dulce que no falla.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de menta con chocolate al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-cafe">
+        <div class="tarjeta-imagen"><img src="images/cafe.jpg" alt="Helado de café" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de café</h3><p>Aromático y cremoso, con café de verdad.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de café al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-cafe">
+        <div class="tarjeta-imagen"><img src="images/paleta-cafe.jpg" alt="Paleta de café" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de café</h3><p>Sabor a café, suave y cremoso.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de café al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-coco">
+        <div class="tarjeta-imagen"><img src="images/coco.jpg" alt="Helado de coco" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de coco</h3><p>Suave sabor a coco, natural y sin atajos.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de coco al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-coco">
+        <div class="tarjeta-imagen"><img src="images/paleta-coco.jpg" alt="Paleta de coco" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de coco</h3><p>Suave y cremosa, con coco real.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de coco al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-mango">
+        <div class="tarjeta-imagen"><img src="images/mango.jpg" alt="Helado de mango" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de mango</h3><p>Dulce, cremoso y con pulpa real de mango.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de mango al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-mango sabor-chilosa">
+        <div class="tarjeta-imagen"><img src="images/paleta-mango.jpg" alt="Paleta de mango" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de mango</h3><p>Pulpa real de mango en cada mordida.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de mango al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-para-llevar sabor-maracuya">
+        <div class="tarjeta-imagen"><img src="images/maracuya.jpg" alt="Helado de maracuyá" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Helado de maracuyá</h3><p>El equilibrio perfecto entre dulce y ácido.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de maracuyá al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-paletas sabor-maracuya">
+        <div class="tarjeta-imagen"><img src="images/paleta-maracuya.jpg" alt="Paleta de maracuyá" loading="lazy" onerror="this.style.display='none'"><span class="precio">$1.00</span></div>
+        <div class="tarjeta-cuerpo"><h3>Paleta de maracuyá</h3><p>Fresca, ácida y hecha con fruta natural.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Paleta de maracuyá al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-postres">
+        <div class="tarjeta-imagen"><img src="images/banana-split.jpg" alt="Banana split" loading="lazy" onerror="this.style.display='none'"><span class="precio">$4.50</span></div>
+        <div class="tarjeta-cuerpo"><h3>Banana split</h3><p>Helado, banano y crema batida en una sola copa.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Banana split al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+      <article class="tarjeta cat-postres">
+        <div class="tarjeta-imagen"><img src="images/sundae.jpg" alt="Sundae Galleta" loading="lazy" onerror="this.style.display='none'"><span class="precio">$3.75</span></div>
+        <div class="tarjeta-cuerpo"><h3>Sundae Galleta</h3><p>Copa de helado delicioso con galleta.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Sundae Galleta al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
+      </article>
+    </div>
 
+    <div class="vacio" id="vacio" hidden>
+      <div class="vacio-ico">🍨</div>
+      <h3>No encontramos helados con esa búsqueda</h3>
+      <p>Prueba con otra palabra o quita los filtros.</p>
+      <button type="button" class="btn" id="reiniciar">Limpiar filtros</button>
     </div>
   </div>
 </section>
+
+
+<!-- ===== Carrito / pedido (oculto hasta que el usuario lo abre) ===== -->
+<button type="button" class="carrito-flotante" id="abrir-carrito" aria-label="Abrir mi pedido">
+  <span class="cf-emoji">🛒</span><span class="cf-texto">Mi pedido</span><b class="cf-badge" id="badge">0</b>
+</button>
+<div class="toast" id="toast" role="status"></div>
+
+<dialog id="carrito" class="panel-carrito" aria-labelledby="carrito-titulo">
+  <div class="pc-cab"><h2 id="carrito-titulo">🛒 Mi pedido</h2><button type="button" class="cerrar" data-cerrar aria-label="Cerrar">&times;</button></div>
+  <div class="progreso" id="progreso"><div class="progreso-barra"><span id="barra"></span></div><p id="progreso-texto"></p></div>
+  <ul class="pc-lista" id="lista-carrito"></ul>
+  <div class="pc-vacio" id="carrito-vacio"><div>🍨</div><p>Aún no has añadido productos.<br>Toca el 🛒 de cualquier helado para empezar.</p></div>
+  <div class="pc-pie">
+    <div class="total-fila"><span>Total</span><strong id="total-carrito">$0.00</strong></div>
+    <button type="button" class="btn btn-grande" id="btn-agregar">Agregar al carrito</button>
+    <button type="button" class="link-vaciar" id="btn-vaciar">Vaciar pedido</button>
+  </div>
+</dialog>
+
+<dialog id="aviso" class="modal" aria-labelledby="aviso-titulo">
+  <div class="aviso-ico">🍨</div>
+  <h3 id="aviso-titulo">Debes de agregar un mínimo de 5 productos</h3>
+  <p id="aviso-texto"></p>
+  <div class="aviso-botones">
+    <button type="button" class="btn btn-sec" id="aviso-cancelar">Cancelar compra</button>
+    <button type="button" class="btn" id="aviso-continuar">Continuar</button>
+  </div>
+</dialog>
+
+<dialog id="pedido" class="modal modal-pedido" aria-labelledby="pedido-titulo">
+  <div class="mp-cab"><h2 id="pedido-titulo">Finalizar compra</h2><button type="button" class="cerrar" data-cerrar aria-label="Cerrar">&times;</button></div>
+  <div class="mp-cuerpo" id="pedido-cuerpo">
+    <form id="form-pedido">
+      <h3>Tus datos</h3>
+      <div class="fila-campos">
+        <div class="campo"><label for="c-nombre">Nombre completo <span class="req">*</span></label><input type="text" id="c-nombre" required autocomplete="name"></div>
+        <div class="campo"><label for="c-dui">DUI <span class="req">*</span></label><input type="text" id="c-dui" inputmode="numeric" placeholder="00000000-0" maxlength="10" pattern="\d{8}-\d" title="Formato: 12345678-9" required></div>
+      </div>
+      <div class="fila-campos">
+        <div class="campo"><label for="c-correo">Email <span class="req">*</span></label><input type="email" id="c-correo" required autocomplete="email"></div>
+        <div class="campo"><label for="c-telefono">Teléfono <span class="req">*</span></label><input type="tel" id="c-telefono" placeholder="7000-0000" pattern="(\+?503[\s\-]?)?\d{4}[\s\-]?\d{4}" title="Número de 8 dígitos, por ejemplo 7000-0000" required autocomplete="tel"></div>
+      </div>
+      <div class="fila-campos">
+        <div class="campo"><label for="c-depto">Departamento <span class="req">*</span></label><select id="c-depto" required><option value="">Selecciona...</option></select></div>
+      </div>
+      <div class="campo"><label for="c-direccion">Dirección de entrega (incluye el municipio) <span class="req">*</span></label><textarea id="c-direccion" rows="2" placeholder="Municipio, colonia, calle, número de casa y un punto de referencia" required></textarea></div>
+      <fieldset class="campo">
+        <legend>Forma de pago <span class="req">*</span></legend>
+        <div class="pagos">
+          <label class="pago"><input type="radio" name="pago" value="Efectivo contra entrega" required><span>💵 Efectivo</span></label>
+          <label class="pago"><input type="radio" name="pago" value="Tarjeta" required><span>💳 Tarjeta</span></label>
+          <label class="pago"><input type="radio" name="pago" value="Transferencia bancaria" required><span>🏦 Transferencia</span></label>
+        </div>
+      </fieldset>
+      <div class="mp-botones">
+        <button type="button" class="btn btn-sec" id="btn-volver">Volver al pedido</button>
+        <button type="submit" class="btn">Confirmar pedido</button>
+      </div>
+    </form>
+    <aside class="resumen">
+      <h3>Tu compra</h3>
+      <ul id="resumen-lista"></ul>
+      <div class="resumen-total"><span id="resumen-unidades"></span><strong id="resumen-total">$0.00</strong></div>
+    </aside>
+  </div>
+  <div class="pedido-ok" id="pedido-ok" hidden>
+    <div class="aviso-ico">🎉</div><h3>¡Pedido recibido!</h3><p id="ok-texto"></p>
+    <button type="button" class="btn" data-cerrar>Seguir comprando</button>
+  </div>
+</dialog>
 
 <footer class="pie">
   <div class="contenedor pie-interior">
     <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
     <nav class="pie-enlaces">
-      <a href="index.html#inicio">Inicio</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a href="index.html#sobre-nosotros">Sobre nosotros</a>
-      <a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
     </nav>
   </div>
 </footer>
 
 <script>
-  const toggle = document.getElementById('toggle-sidebar');
-  const tarjetas = document.querySelectorAll('.tarjeta');
-  const total = document.getElementById('total-productos');
+  const grid = document.getElementById('grid');
+  const tarjetas = [...grid.children];
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const st = { tipo: 'todos', sabor: 'todas', q: '', orden: '0' };
+  const clases = { paletas: 'cat-paletas', llevar: 'cat-para-llevar', postres: 'cat-postres' };
 
-  // Números entre paréntesis de cada opción
-  document.querySelectorAll('[data-cuenta]').forEach(el => {
-    el.textContent = '(' + document.querySelectorAll(el.dataset.cuenta).length + ')';
+  // Datos de cada tarjeta (el precio se lee del texto del propio precio)
+  tarjetas.forEach((c, i) => {
+    c.dataset.i = i;
+    c.dataset.precio = parseFloat(c.querySelector('.precio').textContent.replace(/[^\d.]/g, ''));
+    c.dataset.texto = norm(c.querySelector('h3').textContent + ' ' + c.querySelector('p').textContent);
   });
 
-  // "Mostrando N productos"
-  const contar = () => {
-    total.textContent = [...tarjetas].filter(t => getComputedStyle(t).display !== 'none').length;
-  };
-  contar();
+  // Números entre paréntesis de cada filtro
+  document.querySelectorAll('[data-cuenta]').forEach(el =>
+    el.textContent = '(' + document.querySelectorAll(el.dataset.cuenta).length + ')');
 
-  // Al elegir un sabor, el panel se cierra y se ven los helados filtrados
-  document.querySelectorAll('input[name="sabor"]').forEach(r =>
-    r.addEventListener('change', () => { toggle.checked = false; contar(); }));
-  // Al elegir categoría, se cierra, salvo "Paletas" (falta elegir el sabor)
-  document.querySelectorAll('input[name="filtro"]').forEach(r =>
-    r.addEventListener('change', () => { if (r.id !== 'filtro-paletas') toggle.checked = false; contar(); }));
+  function aplicar() {
+    let n = 0;
+    tarjetas.forEach(c => {
+      const okTipo = st.tipo === 'todos' || c.classList.contains(clases[st.tipo]);
+      const okSabor = st.sabor === 'todas' || c.classList.contains('sabor-' + st.sabor);
+      const okBusca = !st.q || c.dataset.texto.includes(st.q);
+      c.hidden = !(okTipo && okSabor && okBusca);
+      if (!c.hidden) n++;
+    });
+    document.getElementById('total').textContent = n;
+    document.getElementById('plural').textContent = n === 1 ? 'producto' : 'productos';
+    document.getElementById('vacio').hidden = n > 0;
+
+    const orden = [...tarjetas].sort((a, b) =>
+      st.orden === 'precio-asc' ? a.dataset.precio - b.dataset.precio :
+      st.orden === 'precio-desc' ? b.dataset.precio - a.dataset.precio :
+      st.orden === 'nombre' ? a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent, 'es') :
+      a.dataset.i - b.dataset.i);
+    orden.forEach(c => grid.appendChild(c));
+  }
+
+  const marcar = (selector, attr, valor) => document.querySelectorAll(selector).forEach(b => {
+    const on = b.dataset[attr] === valor;
+    b.classList.toggle('activo', on);
+    b.setAttribute('aria-pressed', on);
+  });
+
+  document.querySelectorAll('[data-tipo]').forEach(b => b.addEventListener('click', () => {
+    st.tipo = b.dataset.tipo;
+    marcar('[data-tipo]', 'tipo', st.tipo); aplicar();
+  }));
+  document.querySelectorAll('[data-sabor]').forEach(b => b.addEventListener('click', () => {
+    st.sabor = b.dataset.sabor; marcar('[data-sabor]', 'sabor', st.sabor); aplicar();
+  }));
+  document.getElementById('orden').addEventListener('change', e => { st.orden = e.target.value; aplicar(); });
+
+  const buscar = document.getElementById('buscar'), borrar = document.getElementById('limpiar-busqueda');
+  buscar.addEventListener('input', () => { st.q = norm(buscar.value.trim()); borrar.hidden = !buscar.value; aplicar(); });
+  borrar.addEventListener('click', () => { buscar.value = ''; buscar.dispatchEvent(new Event('input')); buscar.focus(); });
+  document.getElementById('reiniciar').addEventListener('click', () => {
+    buscar.value = ''; borrar.hidden = true; Object.assign(st, { tipo: 'todos', sabor: 'todas', q: '', orden: '0' });
+    document.getElementById('orden').value = '0';
+    marcar('[data-tipo]', 'tipo', 'todos'); marcar('[data-sabor]', 'sabor', 'todas'); aplicar();
+  });
+
+  aplicar();
+</script>
+
+<script>
+(() => {
+  const MIN = 5, KEY = 'df-carrito';
+  const $ = id => document.getElementById(id);
+  const fmt = n => '$' + n.toFixed(2);
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const productos = tarjetas.map(c => ({ nombre: c.querySelector('h3').textContent, precio: +c.dataset.precio, img: c.querySelector('img').getAttribute('src') }));
+
+  let carrito = {};
+  try { const g = JSON.parse(localStorage.getItem(KEY)); if (g) for (const k in g) if (productos[k] && g[k] > 0) carrito[k] = g[k]; } catch (e) {}
+  const guardar = () => { try { localStorage.setItem(KEY, JSON.stringify(carrito)); } catch (e) {} };
+  const unidades = () => Object.values(carrito).reduce((a, b) => a + b, 0);
+  const total = () => Object.entries(carrito).reduce((s, [k, q]) => s + productos[k].precio * q, 0);
+
+  let tt;
+  const aviso = t => { const el = $('toast'); el.textContent = t; el.classList.add('ver'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('ver'), 1800); };
+
+  function render() {
+    const u = unidades(), items = Object.entries(carrito);
+    $('badge').textContent = u;
+    $('barra').style.width = Math.min(u / MIN, 1) * 100 + '%';
+    $('progreso').classList.toggle('listo', u >= MIN);
+    $('progreso-texto').textContent = u >= MIN ? '¡Listo! Ya alcanzaste el mínimo de ' + MIN + ' productos.' : 'Llevas ' + u + ' de ' + MIN + ' productos. Te faltan ' + (MIN - u) + '.';
+    $('total-carrito').textContent = fmt(total());
+    $('carrito-vacio').hidden = u > 0;
+    $('lista-carrito').innerHTML = items.map(([k, q]) => {
+      const p = productos[k];
+      return '<li class="pc-item" data-id="' + k + '"><img src="' + esc(p.img) + '" alt="" onerror="this.style.visibility=\'hidden\'"><div><strong>' + esc(p.nombre) + '</strong><span>' + fmt(p.precio) + ' c/u</span></div>' +
+        '<div class="qty"><button type="button" data-acc="menos" aria-label="Quitar uno">−</button><b>' + q + '</b><button type="button" data-acc="mas" aria-label="Añadir uno">+</button></div></li>';
+    }).join('');
+    $('resumen-lista').innerHTML = items.map(([k, q]) => '<li><span>' + q + ' × ' + esc(productos[k].nombre) + '</span><b>' + fmt(productos[k].precio * q) + '</b></li>').join('');
+    $('resumen-total').textContent = fmt(total());
+    $('resumen-unidades').textContent = u + (u === 1 ? ' producto' : ' productos');
+    tarjetas.forEach(c => { const q = carrito[c.dataset.i] || 0, s = c.querySelector('.cant'); s.textContent = q; s.hidden = !q; });
+  }
+
+  function cambiar(id, d) {
+    const q = (carrito[id] || 0) + d;
+    if (q > 0) carrito[id] = q; else delete carrito[id];
+    guardar(); render();
+  }
+
+  // Añadir desde las tarjetas (no interfiere con filtros, búsqueda ni orden)
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('.agregar'); if (!b) return;
+    const c = b.closest('.tarjeta'); cambiar(c.dataset.i, 1);
+    b.classList.remove('ok'); void b.offsetWidth; b.classList.add('ok');
+    const f = $('abrir-carrito'); f.classList.remove('pulso'); void f.offsetWidth; f.classList.add('pulso');
+    aviso('Añadido: ' + productos[c.dataset.i].nombre);
+  });
+  $('lista-carrito').addEventListener('click', e => {
+    const b = e.target.closest('[data-acc]'); if (!b) return;
+    cambiar(b.closest('.pc-item').dataset.id, b.dataset.acc === 'mas' ? 1 : -1);
+  });
+
+  // Abrir / cerrar
+  $('abrir-carrito').addEventListener('click', () => $('carrito').showModal());
+  document.querySelectorAll('[data-cerrar]').forEach(b => b.addEventListener('click', () => b.closest('dialog').close()));
+  document.querySelectorAll('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+  $('btn-vaciar').addEventListener('click', () => { carrito = {}; guardar(); render(); });
+
+  // Botón "Agregar al carrito": con menos de 5 avisa; con 5 o más abre el formulario
+  $('btn-agregar').addEventListener('click', () => {
+    const u = unidades();
+    if (u < MIN) {
+      $('aviso-texto').textContent = 'Llevas ' + u + (u === 1 ? ' producto' : ' productos') + '. Te faltan ' + (MIN - u) + ' para continuar.';
+      $('aviso').showModal();
+    } else {
+      $('carrito').close();
+      $('pedido-cuerpo').hidden = false; $('pedido-ok').hidden = true;
+      $('pedido').showModal();
+    }
+  });
+  $('aviso-continuar').addEventListener('click', () => { $('aviso').close(); $('carrito').close(); });
+  $('aviso-cancelar').addEventListener('click', () => {
+    carrito = {}; guardar(); render(); $('aviso').close(); $('carrito').close(); aviso('Compra cancelada');
+  });
+  $('btn-volver').addEventListener('click', () => { $('pedido').close(); $('carrito').showModal(); });
+
+  // Confirmar pedido
+  $('form-pedido').addEventListener('submit', e => {
+    e.preventDefault();
+    const nombre = $('c-nombre').value.trim().split(' ')[0], u = unidades(), t = total();
+    const pago = document.querySelector('input[name="pago"]:checked').value;
+    $('ok-texto').textContent = 'Gracias, ' + nombre + '. Recibimos tu pedido de ' + u + ' productos por ' + fmt(t) + '. Entrega en ' + depto.value + '. Forma de pago: ' + pago.toLowerCase() + '.';
+    carrito = {}; guardar(); render();
+    e.target.reset();
+    $('pedido-cuerpo').hidden = true; $('pedido-ok').hidden = false;
+  });
+
+  // ----- Datos del cliente: departamentos y máscara del DUI -----
+  const DEPARTAMENTOS = ['Ahuachapán', 'Cabañas', 'Chalatenango', 'Cuscatlán', 'La Libertad', 'La Paz', 'La Unión', 'Morazán', 'San Miguel', 'San Salvador', 'San Vicente', 'Santa Ana', 'Sonsonate', 'Usulután'];
+  const depto = $('c-depto');
+  DEPARTAMENTOS.forEach(d => depto.add(new Option(d, d)));
+  $('c-dui').addEventListener('input', e => {
+    const n = e.target.value.replace(/\D/g, '').slice(0, 9);
+    e.target.value = n.length > 8 ? n.slice(0, 8) + '-' + n.slice(8) : n;
+  });
+
+  render();
+})();
 </script>
 </body>
 </html>
