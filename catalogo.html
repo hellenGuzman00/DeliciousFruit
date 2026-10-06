@@ -18,11 +18,16 @@
     <a href="index.html" class="logo"><img src="img/logo.jpg" alt="Logotipo Delicious Fruit"><span>Delicious Fruit</span></a>
     <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
     <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú"><span></span><span></span><span></span></label>
-    <nav class="nav-mobile">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html" class="activo">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+    <label for="toggle-menu" class="menu-overlay"></label>
+    <nav class="nav-mobile" aria-label="Menú principal">
+      <div class="menu-cab"><span>Menú</span><label for="toggle-menu" class="menu-cerrar" aria-label="Cerrar menú">&times;</label></div>
+      <a href="index.html#inicio">🏠 Inicio</a>
+      <a href="catalogo.html" class="activo">🍨 Catálogo</a>
+      <a href="sobreNosotros.html">💛 Sobre nosotros</a>
+      <a href="contacto.html">📞 Contacto</a>
     </nav>
     <nav class="nav">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html" class="activo">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html" class="activo">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </header>
@@ -205,19 +210,19 @@
 
 
 <!-- ===== Carrito / pedido (oculto hasta que el usuario lo abre) ===== -->
-<button type="button" class="carrito-flotante" id="abrir-carrito" aria-label="Abrir mi pedido">
-  <span class="cf-emoji">🛒</span><span class="cf-texto">Mi pedido</span><b class="cf-badge" id="badge">0</b>
+<button type="button" class="carrito-flotante" id="abrir-carrito" aria-label="Abrir mi compra">
+  <span class="cf-emoji" aria-hidden="true">🛒</span><span class="cf-texto">Comprar</span><b class="cf-badge" id="badge" hidden>0</b>
 </button>
 <div class="toast" id="toast" role="status"></div>
 
 <dialog id="carrito" class="panel-carrito" aria-labelledby="carrito-titulo">
-  <div class="pc-cab"><h2 id="carrito-titulo">🛒 Mi pedido</h2><button type="button" class="cerrar" data-cerrar aria-label="Cerrar">&times;</button></div>
+  <div class="pc-cab"><h2 id="carrito-titulo">Mi compra</h2><button type="button" class="cerrar" data-cerrar aria-label="Cerrar">&times;</button></div>
   <div class="progreso" id="progreso"><div class="progreso-barra"><span id="barra"></span></div><p id="progreso-texto"></p></div>
   <ul class="pc-lista" id="lista-carrito"></ul>
   <div class="pc-vacio" id="carrito-vacio"><div>🍨</div><p>Aún no has añadido productos.<br>Toca el 🛒 de cualquier helado para empezar.</p></div>
   <div class="pc-pie">
     <div class="total-fila"><span>Total</span><strong id="total-carrito">$0.00</strong></div>
-    <button type="button" class="btn btn-grande" id="btn-agregar">Agregar al carrito</button>
+    <button type="button" class="btn btn-grande" id="btn-agregar">Finalizar compra</button>
     <button type="button" class="link-vaciar" id="btn-vaciar">Vaciar pedido</button>
   </div>
 </dialog>
@@ -278,7 +283,7 @@
   <div class="contenedor pie-interior">
     <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
     <nav class="pie-enlaces">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </footer>
@@ -369,7 +374,9 @@
 
   function render() {
     const u = unidades(), items = Object.entries(carrito);
-    $('badge').textContent = u;
+    $('badge').textContent = u < MIN ? u + '/' + MIN : u;
+    $('badge').hidden = u === 0;
+    $('abrir-carrito').classList.toggle('listo', u >= MIN);
     $('barra').style.width = Math.min(u / MIN, 1) * 100 + '%';
     $('progreso').classList.toggle('listo', u >= MIN);
     $('progreso-texto').textContent = u >= MIN ? '¡Listo! Ya alcanzaste el mínimo de ' + MIN + ' productos.' : 'Llevas ' + u + ' de ' + MIN + ' productos. Te faltan ' + (MIN - u) + '.';
@@ -411,7 +418,7 @@
   document.querySelectorAll('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
   $('btn-vaciar').addEventListener('click', () => { carrito = {}; guardar(); render(); });
 
-  // Botón "Agregar al carrito": con menos de 5 avisa; con 5 o más abre el formulario
+  // Botón "Finalizar compra": con menos de 5 avisa; con 5 o más abre el formulario
   $('btn-agregar').addEventListener('click', () => {
     const u = unidades();
     if (u < MIN) {
@@ -469,6 +476,14 @@
     document.querySelectorAll('[data-sabor]').forEach(b => b.addEventListener('click', () => { if (movil()) cerrar(); }));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
     addEventListener('resize', () => { if (!movil()) cerrar(); });
+  })();
+</script>
+<script>
+  // Menú móvil: se cierra al elegir un enlace o con Esc
+  (() => {
+    const chk = document.getElementById('toggle-menu');
+    document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => chk.checked = false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') chk.checked = false; });
   })();
 </script>
 </body>

@@ -25,18 +25,20 @@
       <span></span><span></span><span></span>
     </label>
 
-    <nav class="nav-mobile">
-      <a href="#inicio">Inicio</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a href="sobreNosotros.html">Sobre nosotros</a>
-      <a href="#contacto">Contacto</a>
+    <label for="toggle-menu" class="menu-overlay"></label>
+    <nav class="nav-mobile" aria-label="Menú principal">
+      <div class="menu-cab"><span>Menú</span><label for="toggle-menu" class="menu-cerrar" aria-label="Cerrar menú">&times;</label></div>
+      <a href="#inicio" class="activo">🏠 Inicio</a>
+      <a href="catalogo.html">🍨 Catálogo</a>
+      <a href="sobreNosotros.html">💛 Sobre nosotros</a>
+      <a href="contacto.html">📞 Contacto</a>
     </nav>
 
     <nav class="nav">
       <a href="#inicio">Inicio</a>
       <a href="catalogo.html">Catálogo</a>
       <a href="sobreNosotros.html">Sobre nosotros</a>
-      <a href="#contacto">Contacto</a>
+      <a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </header>
@@ -125,48 +127,15 @@
   </div>
 </section>
 
-<section class="seccion" id="contacto">
+<section class="seccion contacto-cta" id="contacto">
   <div class="contenedor">
-    <h2>Queremos saber de ti, envíanos tu mensaje</h2>
-
-    <form class="form" action="#" method="post">
-      <div class="fila-campos">
-        <div class="campo">
-          <label for="nombre">Nombre <span class="req">*</span></label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="campo">
-          <label for="correo">Email <span class="req">*</span></label>
-          <input type="email" id="correo" name="correo" required>
-        </div>
-      </div>
-
-      <div class="fila-campos">
-        <div class="campo">
-          <label for="telefono">Teléfono <span class="req">*</span></label>
-          <input type="tel" id="telefono" name="telefono" required>
-        </div>
-        <div class="campo">
-          <label for="pais">País <span class="req">*</span></label>
-          <select id="pais" name="pais" required>
-            <option value="">Selecciona el país...</option>
-            <option value="SV">El Salvador</option>
-            <option value="GT">Guatemala</option>
-            <option value="HN">Honduras</option>
-            <option value="NI">Nicaragua</option>
-            <option value="CR">Costa Rica</option>
-            <option value="otro">Otro</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="campo">
-        <label for="mensaje">Mensaje <span class="req">*</span></label>
-        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-      </div>
-
-      <button type="submit" class="btn-form">Enviar</button>
-    </form>
+    <h2>¿Tienes dudas o encontraste un error?</h2>
+    <p>Escríbenos o llámanos, con gusto te ayudamos.</p>
+    <div class="cta-datos">
+      <a class="cta-dato" href="tel:+50344445555">📞 +503 4444 5555</a>
+      <a class="cta-dato" href="mailto:DeliciousFruitofical@gmail.com">✉️ DeliciousFruitofical@gmail.com</a>
+    </div>
+    <a href="contacto.html" class="btn btn-claro">Ir a contacto</a>
   </div>
 </section>
 
@@ -177,7 +146,7 @@
       <a href="#inicio">Inicio</a>
       <a href="catalogo.html">Catálogo</a>
       <a href="sobreNosotros.html">Sobre nosotros</a>
-      <a href="#contacto">Contacto</a>
+      <a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </footer>
@@ -208,6 +177,14 @@
     const fuentes = v.querySelectorAll('source');
     fuentes[fuentes.length - 1].addEventListener('error', () =>
       console.error('[Delicious Fruit] No se pudo cargar el video. Verifica que exista carpVideo/hero.mp4 al lado de index.html.'));
+  })();
+</script>
+<script>
+  // Menú móvil: se cierra al elegir un enlace o con Esc
+  (() => {
+    const chk = document.getElementById('toggle-menu');
+    document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => chk.checked = false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') chk.checked = false; });
   })();
 </script>
 </body>

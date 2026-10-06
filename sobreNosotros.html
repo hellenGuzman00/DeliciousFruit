@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobre nosotros | Delicious Fruit</title>
 <meta name="description" content="Conoce la historia, misión y valores de Delicious Fruit, y postúlate para trabajar con nosotros.">
-<link rel="icon" type="image/png" href="img/logo.jpg">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,14 +15,19 @@
 
 <header class="cabecera">
   <div class="contenedor cabecera-interior">
-    <a href="index.html" class="logo"><img src="img/logo.jpg" alt="Logotipo Delicious Fruit"><span>Delicious Fruit</span></a>
+    <a href="index.html" class="logo"><img src="img/logo.png" alt="Logotipo Delicious Fruit"><span>Delicious Fruit</span></a>
     <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
     <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú"><span></span><span></span><span></span></label>
-    <nav class="nav-mobile">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html" class="activo">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+    <label for="toggle-menu" class="menu-overlay"></label>
+    <nav class="nav-mobile" aria-label="Menú principal">
+      <div class="menu-cab"><span>Menú</span><label for="toggle-menu" class="menu-cerrar" aria-label="Cerrar menú">&times;</label></div>
+      <a href="index.html#inicio">🏠 Inicio</a>
+      <a href="catalogo.html">🍨 Catálogo</a>
+      <a href="sobreNosotros.html" class="activo">💛 Sobre nosotros</a>
+      <a href="contacto.html">📞 Contacto</a>
     </nav>
     <nav class="nav">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html" class="activo">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html" class="activo">Sobre nosotros</a><a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </header>
@@ -60,8 +65,8 @@
       <p>Cada mañana seleccionamos la fruta que vamos a usar ese mismo día y preparamos en lotes pequeños, varias veces por semana. Somos un negocio joven que se construye con cada persona que forma parte de él.</p>
       <div class="stats">
         <div class="stat"><strong data-n="100" data-s="%">0</strong><span>Fruta real</span></div>
-        <div class="stat"><strong data-n="26">0</strong><span>Productos</span></div>
-        <div class="stat"><strong data-n="12">0</strong><span>Tipos de sabor</span></div>
+        <div class="stat"><strong data-n="12">0</strong><span>Productos</span></div>
+        <div class="stat"><strong data-n="4">0</strong><span>Tipos de sabor</span></div>
       </div>
     </div>
   </div>
@@ -75,18 +80,18 @@
     <div class="duenos">
       <article class="dueno">
         <div class="dueno-foto"><img src="imagen/persona1.jpg" alt="Foto del primer dueño" onerror="this.style.display='none'"></div>
-        <h3>Francisco Montano</h3>
-        <p class="dueno-rol">Fundador</p>
-        <blockquote>“Quería que un helado volviera a ser lo que fue”</blockquote>
+        <h3>Nombre del dueño 1</h3>
+        <p class="dueno-rol">Cofundador</p>
+        <blockquote>“Quería que un helado volviera a saber a la fruta de la que sale.”</blockquote>
         <p>Empecé este proyecto porque extrañaba el sabor del helado de antes, hecho con fruta de verdad. Al no encontrarlo, decidí prepararlo yo mismo.</p>
         <div class="dueno-mas"><p>Empezamos probando recetas en casa, sabor por sabor, hasta que la fruta hablara por sí sola. Hoy cada lote lleva esa misma idea.</p></div>
         <button class="leer-mas" type="button" aria-expanded="false">Leer más</button>
       </article>
       <article class="dueno">
         <div class="dueno-foto"><img src="imagen/persona2.jpg" alt="Foto de la segunda dueña" onerror="this.style.display='none'"></div>
-        <h3>Jessy Varela</h3>
-        <p class="dueno-rol">Fundadora</p>
-        <blockquote>“Un negocio pequeño se construye conociendo a cada cliente.”</blockquote>
+        <h3>Nombre del dueño 2</h3>
+        <p class="dueno-rol">Cofundadora</p>
+        <blockquote>“Un negocio de barrio se construye conociendo a cada cliente.”</blockquote>
         <p>Me sumé porque creí en la idea y en el trato cercano. Quería un lugar donde la gente volviera no solo por el helado, sino por cómo se siente al entrar.</p>
         <div class="dueno-mas"><p>Cuidamos cada detalle: la fruta, el equipo y la atención. Queremos crecer despacio, sin perder lo que nos hizo empezar.</p></div>
         <button class="leer-mas" type="button" aria-expanded="false">Leer más</button>
@@ -179,7 +184,7 @@
   <div class="contenedor pie-interior">
     <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
     <nav class="pie-enlaces">
-      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="index.html#contacto">Contacto</a>
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="contacto.html">Contacto</a>
     </nav>
   </div>
 </footer>
@@ -212,6 +217,14 @@
     e.target.classList.add('enviado');
     e.target.reset();
   });
+</script>
+<script>
+  // Menú móvil: se cierra al elegir un enlace o con Esc
+  (() => {
+    const chk = document.getElementById('toggle-menu');
+    document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => chk.checked = false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') chk.checked = false; });
+  })();
 </script>
 </body>
 </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | Delicious Fruit</title>
+<meta name="description" content="Contacta a Delicious Fruit: llámanos al +503 4444 5555 o escríbenos a DeliciousFruitofical@gmail.com para reportar errores o hacer preguntas.">
+<link rel="icon" type="image/jpeg" href="img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-interior">
+    <a href="index.html" class="logo"><img src="img/logo.jpg" alt="Logotipo Delicious Fruit"><span>Delicious Fruit</span></a>
+    <input type="checkbox" id="toggle-menu" class="toggle-menu-input">
+    <label for="toggle-menu" class="hamburguesa" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+    <label for="toggle-menu" class="menu-overlay"></label>
+    <nav class="nav-mobile" aria-label="Menú principal">
+      <div class="menu-cab"><span>Menú</span><label for="toggle-menu" class="menu-cerrar" aria-label="Cerrar menú">&times;</label></div>
+      <a href="index.html#inicio">🏠 Inicio</a>
+      <a href="catalogo.html">🍨 Catálogo</a>
+      <a href="sobreNosotros.html">💛 Sobre nosotros</a>
+      <a href="contacto.html" class="activo">📞 Contacto</a>
+    </nav>
+    <nav class="nav">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="sobreNosotros.html">Sobre nosotros</a>
+      <a href="contacto.html" class="activo">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="ct-hero">
+  <span class="fr fr1" aria-hidden="true">🍓</span><span class="fr fr2" aria-hidden="true">🥭</span><span class="fr fr3" aria-hidden="true">🍋</span><span class="fr fr4" aria-hidden="true">🥥</span>
+  <div class="contenedor">
+    <h1>Contáctanos</h1>
+    <p>Dudas, sugerencias o errores en la página: estamos para ayudarte.</p>
+  </div>
+</section>
+
+<main class="ct-main">
+  <div class="contenedor">
+    <div class="ct-grid">
+      <article class="ct-card">
+        <div class="ct-ico">📞</div>
+        <h2>Llámanos</h2>
+        <a class="ct-dato" href="tel:+50344445555">+503 4444 5555</a>
+        <p>Para resolver tus dudas sobre nuestros productos.</p>
+        <div class="ct-botones">
+          <a class="btn" href="tel:+50344445555">Llamar</a>
+          <button type="button" class="btn btn-sec" data-copiar="+503 4444 5555" data-msg="Número copiado">Copiar número</button>
+        </div>
+      </article>
+
+      <article class="ct-card">
+        <div class="ct-ico">✉️</div>
+        <h2>Escríbenos</h2>
+        <a class="ct-dato" href="mailto:DeliciousFruitofical@gmail.com">DeliciousFruitofical@gmail.com</a>
+        <p>Para reportar errores, hacer preguntas o enviarnos comentarios.</p>
+        <div class="ct-botones">
+          <a class="btn" href="mailto:DeliciousFruitofical@gmail.com">Enviar correo</a>
+          <button type="button" class="btn btn-sec" data-copiar="DeliciousFruitofical@gmail.com" data-msg="Correo copiado">Copiar correo</button>
+        </div>
+      </article>
+    </div>
+
+    <section class="ct-motivos">
+      <h2>¿Sobre qué nos escribes?</h2>
+      <p>Elige una opción y te abrimos el correo ya con el asunto listo.</p>
+      <div class="motivos">
+        <a class="motivo" href="mailto:DeliciousFruitofical@gmail.com?subject=Reporte%20de%20error%20en%20la%20p%C3%A1gina&body=Hola%2C%20encontr%C3%A9%20un%20error%3A%0A%0A%C2%BFEn%20qu%C3%A9%20p%C3%A1gina%20ocurri%C3%B3%3F%0A%C2%BFQu%C3%A9%20pas%C3%B3%3F%0A">🐞 Reportar un error</a>
+        <a class="motivo" href="mailto:DeliciousFruitofical@gmail.com?subject=Pregunta%20sobre%20Delicious%20Fruit">❓ Hacer una pregunta</a>
+        <a class="motivo" href="mailto:DeliciousFruitofical@gmail.com?subject=Sugerencia%20para%20Delicious%20Fruit">💬 Dar una sugerencia</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<footer class="pie">
+  <div class="contenedor pie-interior">
+    <p>© 2026 Delicious Fruit. Todos los derechos reservados.</p>
+    <nav class="pie-enlaces">
+      <a href="index.html#inicio">Inicio</a><a href="catalogo.html">Catálogo</a><a href="sobreNosotros.html">Sobre nosotros</a><a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Menú móvil: se cierra al elegir un enlace o con Esc
+  const chk = document.getElementById('toggle-menu');
+  document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => chk.checked = false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') chk.checked = false; });
+
+  // Copiar número / correo
+  const toast = document.getElementById('toast');
+  let tt;
+  document.querySelectorAll('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copiar); }
+    catch (e) {
+      const t = document.createElement('textarea'); t.value = b.dataset.copiar; document.body.appendChild(t); t.select();
+      document.execCommand('copy'); t.remove();
+    }
+    toast.textContent = '✔ ' + b.dataset.msg; toast.classList.add('ver');
+    clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('ver'), 1800);
+  }));
+</script>
+</body>
+</html>
