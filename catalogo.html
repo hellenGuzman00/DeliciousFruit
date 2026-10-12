@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo | Delicious Fruit</title>
 <meta name="description" content="Catálogo completo de Delicious Fruit: helados, paletas, sundaes y más, hechos con fruta real.">
-<link rel="icon" type="image/png" href="img/logo.jpg">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -87,14 +87,14 @@
           <button type="button" class="chip chip-sabor" data-sabor="maracuya"><span class="emo">🌺</span><span class="nom">Maracuyá</span> <span class="cuenta" data-cuenta=".sabor-maracuya"></span></button>
         </div>
       </div>
-      <button type="button" class="btn btn-grande ver-resultados">Ver resultados</button>
+      <button type="button" class="btn btn-grande ver-resultados">Ver productos</button>
     </div>
 
     <p class="resultados" role="status">Mostrando <strong id="total">0</strong> <span id="plural">productos</span></p>
 
     <div class="grid-catalogo" id="grid">
       <article class="tarjeta cat-para-llevar sabor-vainilla">
-        <div class="tarjeta-imagen"><img src="images/vainilla.jpeg" alt="Helado de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
+        <div class="tarjeta-imagen"><img src="images/vainilla.jpg" alt="Helado de vainilla" loading="lazy" onerror="this.style.display='none'"><span class="precio">$2.50</span></div>
         <div class="tarjeta-cuerpo"><h3>Helado de vainilla</h3><p>Clásico y cremoso, con vainilla de verdad.</p><div class="tarjeta-pie"><span>Añadir al pedido</span><button type="button" class="agregar" aria-label="Añadir Helado de vainilla al pedido" title="Añadir al pedido">🛒<b class="cant" hidden>0</b></button></div></div>
       </article>
       <article class="tarjeta cat-paletas sabor-vainilla">
@@ -316,7 +316,6 @@
       if (!c.hidden) n++;
     });
     document.getElementById('total').textContent = n;
-    document.querySelector('.ver-resultados').textContent = 'Ver ' + n + (n === 1 ? ' producto' : ' productos');
     document.getElementById('plural').textContent = n === 1 ? 'producto' : 'productos';
     document.getElementById('vacio').hidden = n > 0;
 
@@ -466,8 +465,8 @@
   (() => {
     const filtros = document.getElementById('filtros'), overlay = document.getElementById('filtros-overlay');
     const movil = () => window.matchMedia && matchMedia('(max-width: 760px)').matches;
-    const abrir = () => { filtros.classList.add('abierto'); overlay.classList.add('ver'); };
-    const cerrar = () => { filtros.classList.remove('abierto'); overlay.classList.remove('ver'); };
+    const abrir = () => { filtros.classList.add('abierto'); overlay.classList.add('ver'); document.body.classList.add('panel-abierto'); };
+    const cerrar = () => { filtros.classList.remove('abierto'); overlay.classList.remove('ver'); document.body.classList.remove('panel-abierto'); };
     document.getElementById('tab-categorias').addEventListener('click', abrir);
     overlay.addEventListener('click', cerrar);
     document.querySelector('.cerrar-filtros').addEventListener('click', cerrar);
